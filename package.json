@@ -1,14 +1,14 @@
 {
   "name": "merng_social-network",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "merng app",
+  "main": "./index.js",
   "scripts": {
     "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "KostiaNetot",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.19.0",
