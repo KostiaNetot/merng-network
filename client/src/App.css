@@ -1,0 +1,8 @@
+.page-title {
+  display: block !important;
+  text-align: center;
+}
+
+.button.post-button {
+  margin-bottom: 8px;
+}
