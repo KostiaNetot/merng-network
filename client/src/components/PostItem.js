@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Icon, Label, Button, Image } from 'semantic-ui-react';
 import moment from 'moment';
 
+import { AuthContext } from './../context/auth';
+import LikeBtn from './LikeBtn';
+
 
 function PostItem({ post: { body, createdAt, id, username, likeCount, commentCount, likes } }) {
+
+  const { user } = useContext(AuthContext);
 
   const likePost = () => {
     console.log('likePost');
@@ -28,25 +33,23 @@ function PostItem({ post: { body, createdAt, id, username, likeCount, commentCou
         </Card.Content>
         <Card.Content extra>
 
-          <Button as='div' labelPosition='right' className='post-button'>
-            <Button color='teal' basic onClick={ likePost }>
-              <Icon name='heart' />
-              Like
-            </Button>
-            <Label basic color='teal' pointing='left' style={{cursor: 'default'}}>
-              { likeCount }
-            </Label>
-          </Button>
+          <LikeBtn user={user} post={{ id, likes, likeCount }}/>
       
           <Button as='div' labelPosition='right' className='post-button'>
-            <Button color='blue' basic onClick={ commentPost }>
+            <Button color='blue' basic as={Link} to={`/posts/${id}`}>
               <Icon name='comments' />
             </Button>
             <Label basic color='blue' pointing='left' style={{cursor: 'default'}}>
               { commentCount }
             </Label>
           </Button>
-      
+
+        {user && user.username === username && (
+          <Button as='div' color='red' onClick={() => console.log('deletepost')} floated='right' style={{ marginRight: 0 }} >
+            <Icon name='trash' style={{ margin: 0 }} />
+          </Button>
+        )}
+
         </Card.Content>
       </Card>
     )

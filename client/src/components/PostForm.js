@@ -18,12 +18,14 @@ function PostForm() {
       const data = proxy.readQuery({
         query: FETCH_POSTS_QUERY
       });
-      // data.getPosts = [result.data.createPost, ...data.getPosts];
       proxy.writeQuery({
         query: FETCH_POSTS_QUERY,
         data: { getPosts: [result.data.createPost, ...data.getPosts] }
       });
       values.body = '';
+    },
+    onError(err) {
+      console.log(err);
     }
   });
 
@@ -32,20 +34,30 @@ function PostForm() {
   }
 
     return (
-      <Form onSubmit={onSubmit}>
-        <h3>Post form</h3>
-        <Form.Field>
-          <Form.Input
-            placeholder='What is on your mind?'
-            name='body'
-            onChange={onInputChange}
-            value={values.body}
-          />
-        <Button type='submit' color='teal'>
-          Create  
-        </Button>  
-        </Form.Field>
-      </Form>    
+      <>
+        <Form onSubmit={onSubmit}>
+          <h3>Post form</h3>
+          <Form.Field>
+            <Form.Input
+              placeholder='What is on your mind?'
+              name='body'
+              onChange={onInputChange}
+              value={values.body}
+              error={error ? true : false}
+            />
+          <Button type='submit' color='teal'>
+            Create  
+          </Button>  
+          </Form.Field>
+        </Form>   
+        {error && (
+          <div className="ui error message">
+            <ul className='list'>
+              <li>{ error.graphQLErrors[0].message }</li>
+            </ul>
+          </div>
+        )}
+      </>   
     )
 }
 

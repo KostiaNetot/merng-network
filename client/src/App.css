@@ -11,3 +11,13 @@ div.form-container {
   width: 350px;
   margin: auto;
 }
+
+.ui.error.message {
+  position: absolute;
+  left: 106px;
+  bottom: 13px;
+}
+
+.ui.card .ui.button {
+  padding: 10px 10px;
+}

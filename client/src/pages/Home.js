@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Grid, Loader } from 'semantic-ui-react';
+import { Grid, Loader, Transition } from 'semantic-ui-react';
 
 import { AuthContext } from './../context/auth';
 import PostItem from './../components/PostItem';
@@ -19,7 +19,7 @@ function Home() {
         <h2>Posts</h2>
       </Grid.Row>
 
-      <Grid.Row style={{ paddingLeft: 14, paddingRight: 14 }}>
+      <Grid.Row className='post-form-row' style={{ paddingLeft: 14, paddingRight: 14 }}>
         {user && <PostForm />}        
       </Grid.Row>
 
@@ -27,11 +27,15 @@ function Home() {
         {loading ? (
           <Loader active inline='centered' />
         ) : (
-          posts && posts.map(post => (
-            <Grid.Column key={post.id} style={{ marginBottom: 18 }}>
-              <PostItem post={post} />
-            </Grid.Column>
-          )) 
+          <Transition.Group>
+            {
+              posts && posts.map(post => (
+                <Grid.Column key={post.id} style={{ marginBottom: 18 }}>
+                  <PostItem post={post} />
+                </Grid.Column>
+              ))
+            }
+          </Transition.Group> 
         )}
       </Grid.Row>
     </Grid>    
