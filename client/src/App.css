@@ -21,3 +21,7 @@ div.form-container {
 .ui.card .ui.button {
   padding: 10px 10px;
 }
+
+.ui.teal.button:focus, .ui.teal.buttons .button:focus {
+  background-color: #00B5AD;
+}

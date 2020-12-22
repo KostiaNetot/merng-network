@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import { AuthContext } from './../context/auth';
 import LikeBtn from './LikeBtn';
+import DeleteBtn from './DeleteBtn';
 
 
 function PostItem({ post: { body, createdAt, id, username, likeCount, commentCount, likes } }) {
@@ -45,9 +46,7 @@ function PostItem({ post: { body, createdAt, id, username, likeCount, commentCou
           </Button>
 
         {user && user.username === username && (
-          <Button as='div' color='red' onClick={() => console.log('deletepost')} floated='right' style={{ marginRight: 0 }} >
-            <Icon name='trash' style={{ margin: 0 }} />
-          </Button>
+          <DeleteBtn postId={id} />
         )}
 
         </Card.Content>

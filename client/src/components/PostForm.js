@@ -35,7 +35,7 @@ function PostForm() {
 
     return (
       <>
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} style={{ width: '100%' }}>
           <h3>Post form</h3>
           <Form.Field>
             <Form.Input
